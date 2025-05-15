@@ -1,6 +1,5 @@
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, KEY } from './config.js';
-// import { getJSON, sendJSON } from './helpers.js';
 import { AJAX } from './helpers.js';
 
 export const state = {
@@ -42,7 +41,7 @@ export const loadRecipe = async function (id) {
 
     console.log(state.recipe);
   } catch (err) {
-    //Temperory wrror handling
+    //Temperory error handling
     console.error(`${err} 💥💥💥💥`);
     throw err;
   }

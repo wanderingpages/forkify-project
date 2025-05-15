@@ -11,15 +11,6 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
 
-// NEW API URL (instead of the one shown in the video)
-// https://forkify-api.jonas.io
-
-///////////////////////////////////////
-
-// if (module.hot) {
-//   module.hot.accept();
-// }
-
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -28,15 +19,12 @@ const controlRecipes = async function () {
     recipeView.renderSpinner();
 
     //0) Update results view to mark selected search result
-
     resultsView.update(model.getSearchResultsPage());
 
     //1) Updating bookmark view
-
     bookmarksView.update(model.state.bookmarks);
 
     //2) Loading Recipe
-
     await model.loadRecipe(id);
 
     //3) Rendering Recipe
@@ -71,6 +59,7 @@ const controlSearchResults = async function () {
 const controlPagination = function (goToPage) {
   //Render new Results
   resultsView.render(model.getSearchResultsPage(goToPage));
+
   //Render new pagination button
   paginationView.render(model.state.search);
 };
@@ -80,7 +69,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   //Update the recipe view
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
@@ -134,10 +122,6 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
-const newFeature = function () {
-  console.log('Welcome to the application');
-};
-
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -146,6 +130,5 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
-  newFeature();
 };
 init();
